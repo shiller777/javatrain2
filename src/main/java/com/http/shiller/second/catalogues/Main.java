@@ -16,7 +16,7 @@ public class Main {
             try {
                 System.out.println(String.format("File: %s - Strings: %d", o.getName(),
                         Files.lines(o.toPath()).filter(o1 -> !o1.contains("package"))
-                        .filter(o1 -> !o1.contains("import")).filter(o1 -> !o1.isEmpty()).count()));
+                                .filter(o1 -> !o1.contains("import") && !o1.isEmpty()).count()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
