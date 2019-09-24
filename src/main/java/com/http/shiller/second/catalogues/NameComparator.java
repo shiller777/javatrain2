@@ -2,6 +2,7 @@ package com.http.shiller.second.catalogues;
 
 import java.util.Comparator;
 
+@SuppressWarnings("ManualMinMaxCalculation")
 public class NameComparator implements Comparator<FileInfoRecord> {
 
     public int compare(FileInfoRecord o1, FileInfoRecord o2) {
