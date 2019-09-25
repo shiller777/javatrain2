@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -14,11 +13,12 @@ public class Main {
     public static void main(String[] args) {
         String FOLDER_PATH = "D:\\Projects\\javatrain2\\src\\main\\java\\com\\http\\shiller\\second\\catalogues";
 
-        File myFile = new File(FOLDER_PATH);
+        List<File> files = new ArrayList<>();
+        FileRunner.initAllFiles(new File(FOLDER_PATH), files);
 
         List<FileInfoRecord> fileInfoList = new ArrayList<>();
 
-        Arrays.stream(myFile.listFiles())
+        files.stream()
                 .filter(o -> o.getName().endsWith(".java"))
                 .filter(o -> !o.isDirectory())
                 .forEach(o -> {
@@ -38,17 +38,10 @@ public class Main {
                         fileInfoList.add(new FileInfoRecord(o.getName(), linesCounter, symbolsCounter));
                         linesCounter = 0;
                         symbolsCounter = 0;
-
-//                System.out.println(String.format("File: %s - Strings: %d", o.getName(),
-//                        Files.lines(o.toPath()).filter(o1 -> !o1.contains("package"))
-//                                .filter(o1 -> !o1.contains("import")).filter(o1 -> !o1.isEmpty()).count()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
                 });
-
-        //fileInfoList.stream().forEach(q -> System.out.println(q.toString()));
 
         fileInfoList.stream()
                 .sorted(new StringCountComparator().thenComparing(new NameComparator()))
