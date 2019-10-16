@@ -5,7 +5,7 @@ import java.util.Comparator;
 public class NameComparator implements Comparator<FileInfoRecord> {
 
     public int compare(FileInfoRecord o1, FileInfoRecord o2) {
-        int less = o1.getFileName().length() > o2.getFileName().length() ?
+        int less = o1.getFileName().length() < o2.getFileName().length() ?
                 o1.getFileName().length() : o2.getFileName().length();
         int lalala = o1.getFileName().length() - o2.getFileName().length();
 
