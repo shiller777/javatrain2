@@ -1,0 +1,25 @@
+CREATE DATABASE notes_db;
+USE notes_db;
+
+CREATE TABLE pads
+(
+id   INTEGER PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(255)
+);
+
+CREATE TABLE notes
+(
+id     INTEGER PRIMARY KEY AUTO_INCREMENT,
+title  VARCHAR(255),
+body   TEXT,
+date   TIMESTAMP,
+pad_id INTEGER,
+CONSTRAINT pad_id_fk
+FOREIGN KEY (pad_id) REFERENCES pads (id)
+);
+
+CREATE INDEX pad_id ON notes (pad_id);
+
+
+INSERT INTO notes
+VALUES (1, 'asdas', 'awdawd', NULL, (SELECT id FROM pads WHERE name = 'sad'));

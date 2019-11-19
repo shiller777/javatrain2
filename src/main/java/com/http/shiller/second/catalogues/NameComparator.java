@@ -2,7 +2,6 @@ package com.http.shiller.second.catalogues;
 
 import java.util.Comparator;
 
-@SuppressWarnings("ManualMinMaxCalculation")
 public class NameComparator implements Comparator<FileInfoRecord> {
 
     public int compare(FileInfoRecord o1, FileInfoRecord o2) {
@@ -11,7 +10,7 @@ public class NameComparator implements Comparator<FileInfoRecord> {
         int lalala = o1.getFileName().length() - o2.getFileName().length();
 
         for (int i = 0; i < less; i++) {
-            byte ololol = (byte) (o1.getFileName().charAt(i) - o2.getFileName().charAt(i));
+            int ololol = o1.getFileName().charAt(i) - o2.getFileName().charAt(i);
             if (ololol != 0) {
                 return ololol;
             }
